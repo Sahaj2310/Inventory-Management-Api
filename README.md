@@ -163,6 +163,20 @@ dotnet run
 
 ---
 
+## 👥 Admin & User Usage
+
+### Admin Role
+- Admins have full access to all endpoints.
+- They can create, update, and delete products, categories, and suppliers.
+- Admins can manage user roles and access.
+
+### User Role
+- Regular users can view products, categories, and suppliers.
+- They cannot modify or delete data.
+- Users can only access endpoints marked as public or user-accessible.
+
+---
+
 ## 🔒 Security & Best Practices
 - **Never commit real secrets or connection strings.**
 - Use the `.template` files for sharing config structure.
@@ -176,3 +190,28 @@ dotnet run
 ```bash
 dotnet test
 ```
+
+---
+
+## 📦 Deployment
+- Set environment variables for all secrets in production.
+- Use `appsettings.Production.json.template` for structure.
+- Consider Docker for containerized deployment.
+
+---
+
+## 🤝 Contributing
+1. Fork the repo
+2. Create a feature branch
+3. Commit your changes
+4. Open a pull request
+
+---
+
+## 📄 License
+MIT
+
+---
+
+## 🙋 Need Help?
+Open an issue or ask for help in the repository!
