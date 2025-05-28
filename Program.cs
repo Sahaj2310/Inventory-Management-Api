@@ -33,12 +33,31 @@ builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddScoped<IAuthRepository, AuthRepository>();
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 
-
-
-
 builder.Services.Configure<JwtSettings>(builder.Configuration.GetSection("Jwt"));
 builder.Services.Configure<LowStockSettings>(builder.Configuration.GetSection("LowStockSettings"));
+
+// Get JWT settings after configuration is bound
 var jwtSettings = builder.Configuration.GetSection("Jwt").Get<JwtSettings>();
+if (jwtSettings == null || string.IsNullOrEmpty(jwtSettings.Key))
+{
+    throw new InvalidOperationException("JWT Key is not configured properly in appsettings.json. Please ensure the Jwt section exists with a valid Key.");
+}
+
+// Validate other required JWT settings
+if (string.IsNullOrEmpty(jwtSettings.Issuer))
+{
+    throw new InvalidOperationException("JWT Issuer is not configured properly in appsettings.json");
+}
+
+if (string.IsNullOrEmpty(jwtSettings.Audience))
+{
+    throw new InvalidOperationException("JWT Audience is not configured properly in appsettings.json");
+}
+
+if (jwtSettings.ExpiresInMinutes <= 0)
+{
+    throw new InvalidOperationException("JWT ExpiresInMinutes must be greater than 0");
+}
 
 builder.Services.AddAuthentication(options =>
 {
@@ -56,6 +75,7 @@ builder.Services.AddAuthentication(options =>
         ValidIssuer = jwtSettings.Issuer,
         ValidAudience = jwtSettings.Audience,
         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings.Key)),
+        ClockSkew = TimeSpan.Zero
     };
 });
 
