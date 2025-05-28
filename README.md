@@ -258,4 +258,39 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 📞 Support
 
-For support, please open an issue in the GitHub repository or contact the maintainers. 
+For support, please open an issue in the GitHub repository or contact the maintainers.
+
+## ⚠️ Environment Variables for Secrets
+
+**Important:** For security, do not store sensitive information (like JWT keys or database connection strings) in your `appsettings.json` or commit them to source control. Instead, use environment variables.
+
+### Setting Environment Variables
+
+#### On Windows (PowerShell):
+```powershell
+$env:ConnectionStrings__DefaultConnection="Server=localhost;Database=Myappdb;Trusted_Connection=True;Encrypt=False"
+$env:Jwt__Key="your-very-secret-key"
+$env:Jwt__Issuer="https://localhost:7186/"
+$env:Jwt__Audience="https://localhost:7186/"
+```
+
+#### On Linux/macOS (bash):
+```bash
+export ConnectionStrings__DefaultConnection="Server=localhost;Database=Myappdb;Trusted_Connection=True;Encrypt=False"
+export Jwt__Key="your-very-secret-key"
+export Jwt__Issuer="https://localhost:7186/"
+export Jwt__Audience="https://localhost:7186/"
+```
+
+- The double underscore `__` is used to represent nested configuration keys.
+- These environment variables will override values in `appsettings.json` and `appsettings.Development.json`.
+
+### Local Development
+- You can use a tool like [dotnet user-secrets](https://learn.microsoft.com/en-us/aspnet/core/security/app-secrets) for local development:
+  ```bash
+  dotnet user-secrets set "ConnectionStrings:DefaultConnection" "Server=localhost;Database=Myappdb;Trusted_Connection=True;Encrypt=False"
+  dotnet user-secrets set "Jwt:Key" "your-very-secret-key"
+  dotnet user-secrets set "Jwt:Issuer" "https://localhost:7186/"
+  dotnet user-secrets set "Jwt:Audience" "https://localhost:7186/"
+  ```
+- Never commit your secrets to source control! 
