@@ -1,0 +1,13 @@
+{
+  "ConnectionStrings": {
+    "DefaultConnection": "YOUR_DATABASE_CONNECTION_STRING_HERE"
+  },
+  "Jwt": {
+    "Key": "YOUR_SECRET_KEY_HERE",
+    "Issuer": "YOUR_ISSUER_URL_HERE",
+    "Audience": "YOUR_AUDIENCE_URL_HERE",
+    "ExpiresInMinutes": 60
+  },
+  // Add other settings as needed
+  "Instructions": "Copy this file to appsettings.json and fill in your real values. Do NOT commit secrets to git."
+} 
