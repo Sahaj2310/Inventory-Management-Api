@@ -8,6 +8,18 @@
     "Audience": "YOUR_AUDIENCE_URL_HERE",
     "ExpiresInMinutes": 60
   },
+    "LowStockSettings": {
+    "DefaultThreshold": 10,
+    "EnableNotifications": true,
+    "NotificationThreshold": 5
+  },
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft.AspNetCore": "Warning"
+    }
+  },
+  "AllowedHosts": "*"
   // Add other settings as needed
   "Instructions": "Copy this file to appsettings.json and fill in your real values. Do NOT commit secrets to git."
 } 
