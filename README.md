@@ -8,6 +8,7 @@ A robust ASP.NET Core Web API for managing products, categories, and suppliers w
 - Product, Category, and Supplier management
 - User registration and login with JWT authentication
 - Role-based authorization (Admin/User)
+- Image upload and management functionality
 - Swagger UI for API exploration
 - Secure configuration management
 - Entity Framework Core with SQL Server
@@ -161,6 +162,37 @@ dotnet run
   }
   ```
 
+### Images
+- **Upload Image**
+  ```http
+  POST /api/images/upload
+  Authorization: Bearer {token}
+  Content-Type: multipart/form-data
+
+  {
+    "file": [binary file],
+    "description": "string"
+  }
+  ```
+
+- **Get Image by ID**
+  ```http
+  GET /api/images/{id}
+  Authorization: Bearer {token}
+  ```
+
+- **Get All Images**
+  ```http
+  GET /api/images
+  Authorization: Bearer {token}
+  ```
+
+- **Delete Image**
+  ```http
+  DELETE /api/images/{id}
+  Authorization: Bearer {token}
+  ```
+
 ---
 
 ## 👥 Admin & User Usage
@@ -182,6 +214,8 @@ dotnet run
 - Use the `.template` files for sharing config structure.
 - Use environment variables or [dotnet user-secrets](https://learn.microsoft.com/en-us/aspnet/core/security/app-secrets) for local development.
 - Enforce HTTPS in production.
+- Store images securely in the wwwroot/images directory.
+- Validate image file types and sizes before upload.
 
 ---
 
