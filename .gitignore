@@ -53,4 +53,7 @@ project.lock.json
 nupkg/
 
 # Local development settings
-local.settings.json 
+local.settings.json
+
+# Image storage
+wwwroot/images/ 
