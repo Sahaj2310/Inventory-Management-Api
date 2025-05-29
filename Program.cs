@@ -11,6 +11,20 @@ using InventoryManagementAPI.Interfaces;
 using InventoryManagementAPI.Repositories;
 using InventoryManagementAPI.Models;
 using Microsoft.AspNetCore.Identity;
+using System;
+using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using System.Linq;
+using System.Collections.Generic;
+using Microsoft.Extensions.Configuration;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.FileProviders;
+using Microsoft.AspNetCore.Hosting;
+using System.IO;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -30,6 +44,9 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
+builder.Services.AddHttpContextAccessor();
+
+builder.Services.AddScoped<IImageRepository, LocalImageRepository>();
 builder.Services.AddScoped<IAuthRepository, AuthRepository>();
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 
@@ -148,6 +165,13 @@ app.UseCors("AllowFrontend");
 // IMPORTANT: Authentication must be before Authorization
 app.UseAuthentication();
 app.UseAuthorization();
+
+app.UseStaticFiles(new StaticFileOptions
+{
+    FileProvider = new PhysicalFileProvider(
+       Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images")),
+    RequestPath = "/images"
+});
 
 app.MapControllers();
 

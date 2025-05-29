@@ -1,6 +1,9 @@
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using InventoryManagementAPI.Models;
+using InventoryManagementAPI.DTOs;
+using InventoryManagementAPI.Interfaces;
+using InventoryManagementAPI.Repositories;
 
 namespace InventoryManagementAPI.Data
 {
@@ -15,6 +18,7 @@ namespace InventoryManagementAPI.Data
         public DbSet<Category> Categories { get; set; }
         public DbSet<Supplier> Suppliers { get; set; }
         public DbSet<ApplicationUser> Users { get; set; }
+        public DbSet<Image> Images { get; set; }
 
     }
 }

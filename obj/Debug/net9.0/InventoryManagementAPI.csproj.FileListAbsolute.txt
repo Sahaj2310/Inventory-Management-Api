@@ -168,3 +168,4 @@ D:\ADF Minor\InventoryManagementAPI\obj\Debug\net9.0\InventoryManagementAPI.pdb
 D:\ADF Minor\InventoryManagementAPI\obj\Debug\net9.0\InventoryManagementAPI.genruntimeconfig.cache
 D:\ADF Minor\InventoryManagementAPI\obj\Debug\net9.0\ref\InventoryManagementAPI.dll
 D:\ADF Minor\InventoryManagementAPI\obj\Debug\net9.0\InventoryManagementAPI.sourcelink.json
+D:\ADF Minor\InventoryManagementAPI\bin\Debug\net9.0\InventoryManagementAPI.staticwebassets.runtime.json
